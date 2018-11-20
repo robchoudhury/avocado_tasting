@@ -13,18 +13,14 @@ ggplot(data, aes(reorder(variety, rating, FUN = mean ), rating)) +
   xlab("Avocado Variety")  +
   theme_classic() +
   theme(legend.position = "bottom",
-        text = element_text(size = 20),
-        panel.background = element_rect(fill = "transparent",colour = NA),
-        plot.background = element_rect(fill = "transparent",colour = NA),
-        legend.box.background = element_rect(fill = "transparent",colour = NA))
+        text = element_text(size = 20))
 
 ggsave(filename = paste(Sys.Date(),".variety.rating.png", sep = ""), 
        width = 10, 
        height = 6, 
        units = "in",
        dpi = 300, 
-       type="cairo-png", 
-       bg="transparent")
+       type="cairo-png")
 
 data_summary <- data %>%
   group_by(rater, variety) %>%
@@ -37,10 +33,7 @@ ggplot(data = data_summary, aes(x = reorder(rater, mean, FUN = median), y = mean
   ylab("Rating")+
   theme_classic() +
   theme(legend.position = "bottom",
-        text = element_text(size = 20),
-        panel.background = element_rect(fill = "transparent",colour = NA),
-        plot.background = element_rect(fill = "transparent",colour = NA),
-        legend.box.background = element_rect(fill = "transparent",colour = NA))
+        text = element_text(size = 20))
 
 
 ggsave(filename = paste(Sys.Date(),".variety.rating.person.png", sep = ""), 
@@ -48,8 +41,7 @@ ggsave(filename = paste(Sys.Date(),".variety.rating.person.png", sep = ""),
        height = 6, 
        units = "in",
        dpi = 300, 
-       type="cairo-png", 
-       bg="transparent")
+       type="cairo-png")
 #ordination?
 
 rater_spread <- data_summary %>%
@@ -81,15 +73,11 @@ ggplot(ord_data, aes(DCA1, DCA2, label=rater))+
                                                 title.hjust = 0.5,
                                                 title = "Mean Rating"))+
   theme(legend.position = "bottom",
-        text = element_text(size=20),
-        panel.background = element_rect(fill = "transparent",colour = NA),
-        plot.background = element_rect(fill = "transparent",colour = NA),
-        legend.box.background = element_rect(fill = "transparent",colour = NA))
+        text = element_text(size=20))
 
 ggsave(filename = paste(Sys.Date(),".variety.ordination.png", sep = ""), 
        width = 10, 
        height = 6, 
        units = "in",
        dpi = 300, 
-       type="cairo-png", 
-       bg="transparent")
+       type="cairo-png")
